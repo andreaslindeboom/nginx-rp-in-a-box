@@ -1,0 +1,42 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws.access_key`}}",
+      "secret_key": "{{user `aws.secret_key`}}",
+      "region": "eu-central-1",
+      "source_ami": "ami-6265657f",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "jenkins-master-{{timestamp}}"
+    }, {
+      "type": "digitalocean",
+      "droplet_name": "nginx-builder",
+      "snapshot_name": "nginx-{{timestamp}}",
+      "api_token": "{{user `digitalocean.access_token`}}",
+      "image": "ubuntu-14-04-x64",
+      "region": "ams3",
+      "size": "512mb"
+    }, {
+      "type": "docker",
+      "image": "ubuntu:14.04",
+      "export_path": "jenkins-master"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
+      "script": "packer/scripts/install-nginx.sh"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-import",
+        "repository": "andreaslindeboom/jenkins-master",
+        "only": [ "docker" ]
+      }
+    ]
+  ]
+}

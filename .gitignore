@@ -1,0 +1,4 @@
+secrets.json
+secrets.tf
+packer_cache/
+terraform.tfstate
