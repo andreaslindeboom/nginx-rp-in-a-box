@@ -8,7 +8,7 @@
       "source_ami": "ami-6265657f",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "jenkins-master-{{timestamp}}"
+      "ami_name": "nginx-{{timestamp}}"
     }, {
       "type": "digitalocean",
       "droplet_name": "nginx-builder",
@@ -34,7 +34,7 @@
     [
       {
         "type": "docker-import",
-        "repository": "andreaslindeboom/jenkins-master",
+        "repository": "andreaslindeboom/nginx-rp-packer-terraform",
         "only": [ "docker" ]
       }
     ]
