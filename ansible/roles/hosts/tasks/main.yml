@@ -4,7 +4,7 @@
   copy: src=default dest=/etc/nginx/sites-available/default force=yes owner=www-data group=www-data
   notify: reload Nginx
 
-- name: verify existence of reverse proxy config
+- name: Verify existence of reverse proxy config
   local_action: stat path=proxy_hosts.yml
   register: proxy_config
 
