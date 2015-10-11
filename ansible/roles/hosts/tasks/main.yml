@@ -30,6 +30,7 @@
   sudo: true
   file: src=/etc/nginx/sites-available/{{ item.name }} dest=/etc/nginx/sites-enabled/{{ item.name }} state=link
   with_items:
+    - { name: default }
     - "{{ proxy_hosts }}"
   when: proxy_hosts is defined
   notify: reload Nginx
