@@ -1,0 +1,3 @@
+- hosts: nginx-rp
+  roles:
+    - hosts

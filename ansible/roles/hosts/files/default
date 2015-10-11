@@ -1,0 +1,8 @@
+server {
+    listen 80 default_server;
+
+    location / {
+        #drop connection on anything not specifically configured
+        return 444;
+    }
+}

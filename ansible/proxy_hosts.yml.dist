@@ -1,0 +1,8 @@
+---
+# The domain suffix is suffixed to the name of the proxy_pass entry to get the server_name.
+# These settings would result in two entries: proxy1.sub.domain.com and proxy2.sub.domain.suffix.com
+domain_suffix: sub.domain.com
+
+proxy_hosts:
+- { name: "proxy1", pass_to: "1.2.3.4" }
+- { name: "proxy2", pass_to: "hostname" }

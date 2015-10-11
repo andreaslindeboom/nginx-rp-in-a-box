@@ -1,0 +1,7 @@
+server {
+        server_name {{ item.name }}.{{ domain_suffix }};
+
+        location ~ {
+                proxy_pass {{ item.pass_to }};
+        }
+}
