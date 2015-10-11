@@ -1,4 +1,11 @@
 ---
+- name: Remove Nginx hosts
+  sudo: true
+  shell: cd /etc/nginx && find {{ item }} -mindepth 1 -delete
+  with_items:
+      - sites-available
+      - sites-enabled
+
 - name: Add new default host
   sudo: true
   copy: src=default dest=/etc/nginx/sites-available/default force=yes owner=www-data group=www-data
