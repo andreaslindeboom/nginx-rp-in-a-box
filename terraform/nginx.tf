@@ -13,4 +13,5 @@ resource "digitalocean_droplet" "nginx-rp" {
     region = "ams3"
     size = "512mb"
     ssh_keys = ["${digitalocean_ssh_key.nginx.id}"]
+    private_networking = true
 }
